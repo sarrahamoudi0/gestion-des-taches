@@ -1,0 +1,43 @@
+<div class="task-container">
+
+  <!-- Barre de navigation -->
+  <header class="task-header">
+    <h2>Ma Liste de Tâches</h2>
+    <button class="logout-btn" (click)="onLogout()">Déconnexion</button>
+  </header>
+
+  <!-- Formulaire pour ajouter / modifier une tâche -->
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmitTask()" class="task-form">
+    <input formControlName="title" type="text" placeholder="Titre" required>
+    <input formControlName="description" type="text" placeholder="Description" required>
+    <select formControlName="priority">
+      <option value="1">1 - Faible</option>
+      <option value="2">2</option>
+      <option value="3">3 - Moyenne</option>
+      <option value="4">4</option>
+      <option value="5">5 - Urgent</option>
+    </select>
+    <input formControlName="dueDate" type="date" required>
+    <button type="submit">{{ editingTask ? 'Modifier' : 'Ajouter' }}</button>
+    <button type="button" *ngIf="editingTask" (click)="cancelEdit()">Annuler</button>
+  </form>
+
+  <!-- Liste des tâches -->
+  <ul class="task-list">
+    <li *ngFor="let task of tasks$ | async" [class.completed]="task.completed" [attr.data-priority]="task.priority">
+      <div class="task-info">
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+        <small>Priorité: {{ task.priority }} | Échéance: {{ task.dueDate | date:'shortDate' }}</small>
+      </div>
+      <div class="task-actions">
+        <button (click)="toggleCompleted(task)">
+          {{ task.completed ? 'Annuler' : 'Terminer' }}
+        </button>
+        <button (click)="editTask(task)">Modifier</button>
+        <button (click)="deleteTask(task)" class="delete-btn">Supprimer</button>
+      </div>
+    </li>
+  </ul>
+
+</div>
