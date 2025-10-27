@@ -12,10 +12,8 @@
     <input formControlName="description" type="text" placeholder="Description" required>
     <select formControlName="priority">
       <option value="1">1 - Faible</option>
-      <option value="2">2</option>
-      <option value="3">3 - Moyenne</option>
-      <option value="4">4</option>
-      <option value="5">5 - Urgent</option>
+      <option value="2">2 - Moyenne</option>
+      <option value="3">3 - Urgent</option>
     </select>
     <input formControlName="dueDate" type="date" required>
     <button type="submit">{{ editingTask ? 'Modifier' : 'Ajouter' }}</button>
