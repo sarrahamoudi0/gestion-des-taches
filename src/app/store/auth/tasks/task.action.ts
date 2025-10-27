@@ -25,5 +25,5 @@ export const toggleTaskCompleted = createAction(
   props<{ taskId: string; userEmail: string }>()
 );
 
-// Réinitialiser toutes les tâches (ex: logout)
+// Réinitialiser toutes les tâches 
 export const resetTasks = createAction('[Task] Reset Tasks');
